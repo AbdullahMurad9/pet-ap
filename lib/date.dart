@@ -61,7 +61,8 @@ class PetProfileSummaryScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body:
+      Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(

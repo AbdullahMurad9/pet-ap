@@ -66,7 +66,8 @@ class _ProfileBreedState extends State<ProfileBreed> {
 
           // Grid of Breeds
           Expanded(
-            child: GridView.builder(
+            child:
+            GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

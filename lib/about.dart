@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'vaccine.dart';
+import 'recipe.dart';
+import 'vaccinedetails.dart';
+import 'walk.dart';
 class About extends StatefulWidget {
   @override
   _AboutState createState() => _AboutState();
 }
 
 class _AboutState extends State<About> {
+
   int selectedIndex = 0;
   PageController _pageController = PageController();
 
@@ -392,39 +396,48 @@ class _AboutState extends State<About> {
                     padding: const EdgeInsets.all(16.0),
                    child: Column(
                      children: [
-                     Container(
-                     height: 82,
-                     width: 350,
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(20.0),
-                       border: Border.all(
-                         color: Colors.grey.shade200,
-                         width: 1.5,
-                       ),
-                       boxShadow: [
-                         BoxShadow(
-                           color: Colors.white.withOpacity(1.0), // Shadow color
-                           offset: Offset(0, 1), // Change x and y offsets to position the shadow
+                     InkWell(
+    onTap: (){
+    Navigator.push(context,
+    MaterialPageRoute(builder:
+    (context)=> Vaccine()
+    ),
+    );
+    },
+                       child: Container(
+                       height: 82,
+                       width: 350,
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(20.0),
+                         border: Border.all(
+                           color: Colors.grey.shade200,
+                           width: 1.5,
                          ),
-                       ],
-                     ),
-                       child: Row(
-                         children: [
-                           Padding(
-                             padding: const EdgeInsets.only(left: 14.0),
-                             child: Image.asset("assets/images/inssurance.png",height: 54,width: 54,),
-                           ),
-                           SizedBox(width: 10.0,),
-                           Text("Insurance",style: TextStyle(color: Colors.black,
-                               fontWeight: FontWeight.w500,fontFamily: 'Nato Sans'),),
-                           Spacer(),
-                           Padding(
-                             padding: const EdgeInsets.only(right: 13.0),
-                             child: Image.asset("assets/images/plus.png",height: 40,width: 40,),
+                         boxShadow: [
+                           BoxShadow(
+                             color: Colors.white.withOpacity(1.0), // Shadow color
+                             offset: Offset(0, 1), // Change x and y offsets to position the shadow
                            ),
                          ],
                        ),
+                         child: Row(
+                           children: [
+                             Padding(
+                               padding: const EdgeInsets.only(left: 14.0),
+                               child: Image.asset("assets/images/inssurance.png",height: 54,width: 54,),
+                             ),
+                             SizedBox(width: 10.0,),
+                             Text("Insurance",style: TextStyle(color: Colors.black,
+                                 fontWeight: FontWeight.w500,fontFamily: 'Nato Sans'),),
+                             Spacer(),
+                             Padding(
+                               padding: const EdgeInsets.only(right: 13.0),
+                               child: Image.asset("assets/images/plus.png",height: 40,width: 40,),
+                             ),
+                           ],
+                         ),
 
+                       ),
                      ),
                        SizedBox(height: 10.0,),
 
@@ -432,7 +445,7 @@ class _AboutState extends State<About> {
                          onTap: (){
                            Navigator.push(context,
                              MaterialPageRoute(builder:
-                             (context)=> Vaccine()
+                             (context)=> VaccineScreen()
                              ),
                            );
                          },
@@ -614,21 +627,60 @@ class _AboutState extends State<About> {
                   ),
                 ),
 
-                // Nutrition content (scrollable)
                 SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        "Nutrition Content",
-                        style: TextStyle(fontSize: 24),
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Food type selection
+                    SizedBox(height: 20.0,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                              FoodTypeCard(title: 'Kibble /'),
+                              SizedBox(width: 20.0,),
+                              FoodType(title: 'Home'),
+                            ],
+                          ),
+                        SizedBox(height: 30),
+                        // Recipes and Food Journal
+                        OptionCard(title: 'Recipes'),
+                        SizedBox(height: 15.0,),
+                        OptionCardSecond(title: 'Food Journal'),
+                        SizedBox(height: 20),
+                        // Scheduled meals section
+                        Text(
+                          'Scheduled Meals',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 10),
+                        ScheduledMealTile(title: 'Breakfast', time: '10:00 '),
+                        SizedBox(height: 15.0,),
+                        ScheduledMealTile(title: 'Dinner', time: '20:00 '),
+                        SizedBox(height: 20),
+                        // Edit button
+                        SizedBox(height: 35.0,),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context)=>WalksScreen())
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                          ),
+                          child: Text(
+                            'Edit',
+                            style: TextStyle(fontSize: 18,color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-
-                // Activities content (scrollable)
-                SingleChildScrollView(
+SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
@@ -645,5 +697,276 @@ class _AboutState extends State<About> {
         ],
       ),
     );
+
+  }
+
+}
+class FoodTypeCard extends StatelessWidget {
+  final String title;
+
+  FoodTypeCard({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      height: 72,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(color: Colors.white, offset: Offset(0, 1)),
+        ],
+      ),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            Image.asset("assets/images/recipe.png",height: 46,width: 46,),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0,top: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text("Dry", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
+class FoodType extends StatelessWidget {
+  final String title;
+
+  FoodType({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      height: 72,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(color: Colors.white, offset: Offset(0, 1)),
+        ],
+      ),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/Foodnew.png",height: 46,width: 46,),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0,top: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text("cooked",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class OptionCard extends StatelessWidget {
+  final String title;
+
+  OptionCard({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>Recipe()));
+      },
+      child: Container(
+        height: 72,
+        width: 155,
+        margin: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(color: Colors.black12, blurRadius: 5, offset: Offset(0, 3)),
+          ],
+        ),
+        child: Row(
+          children: [
+            Image.asset("assets/images/ricon.png",height: 54,width: 54,),
+            SizedBox(width: 20),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            Image.asset("assets/images/plus.png",height: 40,width: 40,)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class OptionCardSecond extends StatelessWidget {
+  final String title;
+
+  OptionCardSecond({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 72,
+      width: 155,
+      margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 5, offset: Offset(0, 3)),
+        ],
+      ),
+      child: Row(
+        children: [
+          Image.asset("assets/images/ficon.png",height: 54,width: 54,),
+          SizedBox(width: 20),
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+          Image.asset("assets/images/plus.png",height: 40,width: 40,)
+        ],
+      ),
+    );
+  }
+}
+
+
+class ScheduledMealTile extends StatefulWidget {
+  final String title;
+  final String time;
+
+  ScheduledMealTile({required this.title, required this.time});
+
+  @override
+  _ScheduledMealTileState createState() => _ScheduledMealTileState();
+}
+
+class _ScheduledMealTileState extends State<ScheduledMealTile> {
+  bool _lights = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 84, // Adjusted height to accommodate SwitchListTile
+      width: 350,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(
+          color: Colors.grey.shade200,
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white.withOpacity(1.0),
+            offset: Offset(0, 1),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Space between the children
+        children: [
+          Expanded( // Use Expanded to allow flexibility
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0, top: 10),
+                  child: Text(
+                    widget.title,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child: Image.asset(
+                        "assets/images/c.png",
+                        height: 18,
+                        width: 18,
+                      ),
+                    ),
+                    SizedBox(width: 5.0),
+                    Text(
+                      "everyday",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                    SizedBox(width: 15.0),
+                    Text(
+                      " | ",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                    SizedBox(width: 10.0),
+                    Image.asset(
+                      "assets/images/clock.png",
+                      height: 18,
+                      width: 18,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      widget.time,
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Center( // Center the SwitchListTile vertically
+            child: Switch(
+              value: _lights,
+              onChanged: (bool value) {
+                setState(() {
+                  _lights = value;
+                });
+              },
+              activeColor: Colors.blue, // Set active color to blue
+              inactiveTrackColor: Colors.grey, // Set inactive track color (optional)
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
