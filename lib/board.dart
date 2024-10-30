@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'shareprofile.dart';
+import 'tricks.dart';
+import 'setting.dart';
 class Board extends StatefulWidget {
   @override
   _BoardState createState() => _BoardState();
@@ -139,7 +141,12 @@ class _BoardState extends State<Board> {
             ),
             SizedBox(height: 20.0,),
             _buildMenuItem(Icons.person, 'Account'),
-            _buildMenuItem(Icons.settings, 'Settings'),
+            InkWell(
+              onTap: (){
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=>SettingsPage()));
+              },
+                child: _buildMenuItem(Icons.settings, 'Settings')),
           ],
         ),
       ),
@@ -302,9 +309,17 @@ class _BoardState extends State<Board> {
                         'Health Card',
                         'assets/images/carddoctor.png',
                       ),
-                      buildMenuCardWithBackground(
-                        'Activities',
-                        'assets/images/perosncard.png',
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context)=>TrickScreen()));
+                        },
+                        child: Container(
+                          child: buildMenuCardWithBackground(
+                            'Activities',
+                            'assets/images/perosncard.png',
+                          ),
+                        ),
                       ),
                     ],
                   ),

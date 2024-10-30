@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'location.dart';
 class WalksScreen extends StatelessWidget {
   final PageController _pageController = PageController();
 
@@ -44,12 +44,19 @@ class WalksScreen extends StatelessWidget {
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0,right: 15.0),
-                  child: Positioned(
-                    bottom: 10,
-                      child: Image.asset("assets/images/Map.png"
-                      )
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>Location()
+                        ));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0,right: 15.0),
+                    child: Positioned(
+                      bottom: 10,
+                        child: Image.asset("assets/images/Map.png"
+                        )
+                    ),
                   ),
                 ),
                 Positioned(

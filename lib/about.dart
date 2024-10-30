@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import 'vaccine.dart';
 import 'recipe.dart';
 import 'vaccinedetails.dart';
@@ -78,7 +79,8 @@ class _AboutState extends State<About> {
           SizedBox(width: 10),
         ],
       ),
-      body: Column(
+      body:
+      Column(
         children: [
           SizedBox(height: 10.0,),
           Padding(
@@ -681,13 +683,16 @@ class _AboutState extends State<About> {
                   ),
                 ),
 SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        "Activities Content",
-                        style: TextStyle(fontSize: 24),
-                      ),
+                  child:
+                  Container(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text("Your Tricks",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),)
+                          ],
+                        )
+                      ],
                     ),
                   ),
                 ),

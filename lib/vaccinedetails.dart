@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petapp/textfield.dart';
 import 'about.dart';
 
 
@@ -16,15 +17,30 @@ class VaccineScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Pet Profile', style: TextStyle(color: Colors.black, fontSize: 14)),
-            Text('Vaccines', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+            PoppinsTextWidget(
+              fontsize: 14,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey.shade600,
+              text: "Pet Profile",
+            ),
+            PoppinsTextWidget(
+              fontsize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey.shade800,
+              text: "Vaccines",
+            ),
           ],
         ),
         actions: [
           Row(
             children: [
               CircleAvatar(backgroundImage: AssetImage("assets/images/Chow Chow.jpeg"), radius: 20.0),
-              Text("Maxi", style: TextStyle(color: Colors.black)),
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade800,
+                text: "Maxi",
+              ),
             ],
           ),
           SizedBox(width: 16),
@@ -190,18 +206,33 @@ class VaccineDetailBottomSheet extends StatelessWidget {
               SizedBox(height: 16),
               Text(vaccine.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               SizedBox(height: 20),
-              Text("Details", style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade800,
+                text: "Details",
+              ),              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 25.0),
-                    child: Text('Lot'),
+                    child:                     PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade700,
+                      text: "Lot",
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 25.0),
-                    child: Text('Expiry Date'),
+                    child:
+                    PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade700,
+                      text: "Expiry Date",
+                    ),
                   ),
                 ],
               ),
@@ -210,27 +241,56 @@ class VaccineDetailBottomSheet extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 25.0),
-                    child: Text('A583D01',style: TextStyle(fontWeight: FontWeight.bold)),
+                    child:
+                    PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade800,
+                      text: "A583D01",
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 25.0),
-                    child: Text('07-2026',style: TextStyle(fontWeight: FontWeight.bold)),
+                    child:
+                    PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade800,
+                      text: "07-2026",
+                    ),
                   ),
                 ],
               ),
               SizedBox(height: 20),
-              Text("Date", style: TextStyle(fontWeight: FontWeight.bold)),
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade800,
+                text: "Date",
+              ),
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 25.0),
-                    child: Text('Vaccination date'),
+                    child:
+                    PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade700,
+                      text: "Vaccination date",
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 25.0),
-                    child: Text('Valid until'),
+                    child:
+                    PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade700,
+                      text: "Valid until",
+                    ),
                   ),
                 ],
               ),
@@ -239,32 +299,66 @@ class VaccineDetailBottomSheet extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0),
-                      child: Text('18.05.2023',style: TextStyle(fontWeight: FontWeight.bold)),
+                      child:
+                      PoppinsTextWidget(
+                        fontsize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey.shade800,
+                        text: "18.05.2023",
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 25.0),
-                      child: Text('18.09.2025',style: TextStyle(fontWeight: FontWeight.bold)),
-                    ),
+                      child:
+                      PoppinsTextWidget(
+                        fontsize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey.shade800,
+                        text: "18.09.2025",
+                      ),                    ),
                   ],
                 ),
               SizedBox(height: 20),
-              Text('Veterinarian', style: TextStyle(fontWeight: FontWeight.bold)),
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade800,
+                text: "Veterinarian",
+              ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: CircleAvatar(
                   backgroundImage: AssetImage('assets/images/doc.png'), // Placeholder image path
                 ),
-                title: Text('Martha Roth', style: TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text('Veterinary Specialist'),
-                trailing: Image.asset("assets/images/sign.png"),
+                title:
+                PoppinsTextWidget(
+                  fontsize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade600,
+                  text: "Martha Roth",
+                ),
+                subtitle:
+                PoppinsTextWidget(
+                  fontsize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey.shade600,
+                  text: "Veterinary Specialist",
+                ),                trailing: Image.asset("assets/images/sign.png"),
               ),
               SizedBox(height: 20),
-              Text('Notes'),
-              Padding(
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade800,
+                text: "Notes",
+              ),              Padding(
                 padding: const EdgeInsets.only(left: 18.0, top: 10.0),
-                child: Text(
-                  'No bad reactions',
-                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                child:
+                PoppinsTextWidget(
+                  fontsize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade800,
+                  text: "No bad reactions",
                 ),
               ),
               SizedBox(height: 20),
@@ -281,8 +375,13 @@ class VaccineDetailBottomSheet extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     minimumSize: Size(double.infinity, 50), // Full width button
                   ),
-                  child: Text('Done', style: TextStyle(fontSize: 18, color: Colors.white)),
-                ),
+                  child:
+                  PoppinsTextWidget(
+                    fontsize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    text: "Done",
+                  ),                ),
               ),
             ],
           ),

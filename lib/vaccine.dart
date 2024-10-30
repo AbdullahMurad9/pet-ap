@@ -491,7 +491,8 @@ class _VaccineState extends State<Vaccine> {
                 onTap: () {
                   _showBottomSheet(context);
                 },
-                child: Container(
+                child:
+                Container(
                   height: 64,
                   width: 350,
                   decoration: BoxDecoration(
