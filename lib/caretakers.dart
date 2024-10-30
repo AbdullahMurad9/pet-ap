@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petapp/textfield.dart';
 import 'date.dart';
 import 'board.dart';
 class Caretakers extends StatefulWidget {
@@ -17,40 +18,59 @@ class _CaretakerState extends State<Caretakers> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
+            // Add back button functionality here
             Navigator.pop(context);
           },
         ),
-        title: Center(
-          child: Column(
+        title:Center(
+          child:
+          Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Add Pet Profile',
-                  style: TextStyle(color: Colors.black, fontSize: 18)),
-              Text('Caretakers', style: TextStyle(color: Colors.grey, fontSize: 14)),
+              PoppinsTextWidget(
+                fontsize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey.shade800,
+                text: "Add Pet Profile",
+              ),
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey.shade600,
+                text: "Caretakers",
+              ),
             ],
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Column(
+            padding: const EdgeInsets.only(right: 16.0,top: 10),
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Step',
-                  style: TextStyle(color: Colors.black),
+                PoppinsTextWidget(
+                  fontsize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey.shade800,
+                  text: "Step",
                 ),
                 Row(
                   children: [
-                    Text(
-                      '9',
-                      style: TextStyle(color: Colors.black),
+                    PoppinsTextWidget(
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade800,
+                      text: "9",
                     ),
-                    Text(
-                      '/9',
-                      style: TextStyle(color: Colors.grey),
-                    )
+                    PoppinsTextWidget(
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade400,
+                      text: "/9",
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -108,14 +128,12 @@ class _CaretakerState extends State<Caretakers> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
-                      child: Text(
-                        "Search by name, tag, email...",
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: 'Nato Sans',
-                          color: Colors.grey[600],
-                            fontWeight: FontWeight.w500
-                        ),
+                      child:
+                      PoppinsTextWidget(
+                        fontsize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey.shade600,
+                        text: "Search by name, tag, email...",
                       ),
                     ),
                   ],
@@ -209,9 +227,12 @@ class _CaretakerState extends State<Caretakers> {
                         builder: (context) => Board()),
                   );
                 },
-                child: Text(
-                  'Continue',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                child:
+                PoppinsTextWidget(
+                  fontsize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  text: "Continue",
                 ),
               ),
             ),

@@ -328,8 +328,7 @@ Divider(color: Colors.grey.shade300,),
                   Navigator.push(context, 
                       MaterialPageRoute(builder: (context)=>BookingScreen()));
                 },
-                child:
-                PoppinsTextWidget(
+                child: PoppinsTextWidget(
                   fontsize: 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,

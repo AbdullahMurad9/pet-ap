@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petapp/textfield.dart';
 import 'profilename.dart';
 class ProfileBreed extends StatefulWidget {
   @override
@@ -33,20 +34,55 @@ class _ProfileBreedState extends State<ProfileBreed> {
           },
         ),
         title:Center(
-          child:Column(
+          child:
+          Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Add Pet Profile', style: TextStyle(color: Colors.black)),
-            Text('Breed', style: TextStyle(color: Colors.grey, fontSize: 14)),
+            PoppinsTextWidget(
+              fontsize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey.shade800,
+              text: "Add Pet Profile",
+            ),
+            PoppinsTextWidget(
+              fontsize: 14,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey.shade600,
+              text: "Breed",
+            ),
           ],
         ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Text(
-              'Step 2/9',
-              style: TextStyle(color: Colors.grey),
+            padding: const EdgeInsets.only(right: 16.0,top: 10),
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PoppinsTextWidget(
+                  fontsize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey.shade800,
+                  text: "Step",
+                ),
+                Row(
+                  children: [
+                    PoppinsTextWidget(
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade800,
+                      text: "2",
+                    ),
+                    PoppinsTextWidget(
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade400,
+                      text: "/9",
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
@@ -102,12 +138,13 @@ class _ProfileBreedState extends State<ProfileBreed> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            breed,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          PoppinsTextWidget(
+                            fontsize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: selectedBreed == breed
+                                ? Colors.blue
+                                : Colors.grey.shade800,
+                            text: breed,
                           ),
                           SizedBox(height: 10),
                       Image.asset(
@@ -146,9 +183,12 @@ class _ProfileBreedState extends State<ProfileBreed> {
                       MaterialPageRoute(builder: (context) => ProfileName()),
                       );
                   } : null, // Disable if no breed is selected
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(fontSize: 16),
+                  child:
+                  PoppinsTextWidget(
+                    fontsize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    text: "Continue",
                   ),
                 ),
                 SizedBox(height: 8),

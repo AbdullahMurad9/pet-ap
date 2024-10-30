@@ -7,10 +7,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool locationAccess = true;
-  bool photoAccess = true;
-  bool appNotifications = true;
-  bool emailNotifications = true;
+  bool locationAccess = false;
+  bool photoAccess = false;
+  bool appNotifications = false;
+  bool emailNotifications = false;
   bool _lights = false;
   bool _light = true;
 
@@ -242,10 +242,10 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             Spacer(),
                             Switch(
-                              value: _light,
+                              value: locationAccess,
                               onChanged: (bool value) {
                                 setState(() {
-                                  _light = value;
+                                  locationAccess = value;
                                 });
                               },
                               activeColor: Colors.blue, // Set active color to blue
@@ -299,10 +299,10 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             Spacer(),
                             Switch(
-                              value: _light,
+                              value: photoAccess,
                               onChanged: (bool value) {
                                 setState(() {
-                                  _light = value;
+                                  photoAccess = value;
                                 });
                               },
                               activeColor: Colors.blue, // Set active color to blue
@@ -363,10 +363,10 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             Spacer(),
                             Switch(
-                              value: _light,
+                              value: appNotifications,
                               onChanged: (bool value) {
                                 setState(() {
-                                  _light = value;
+                                  appNotifications = value;
                                 });
                               },
                               activeColor: Colors.blue, // Set active color to blue
@@ -420,10 +420,10 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             Spacer(),
                             Switch(
-                              value: _light,
+                              value: emailNotifications,
                               onChanged: (bool value) {
                                 setState(() {
-                                  _light = value;
+                                  emailNotifications = value;
                                 });
                               },
                               activeColor: Colors.blue, // Set active color to blue

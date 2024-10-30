@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petapp/textfield.dart';
 import 'caretakers.dart';
 
 class PetProfileSummaryScreen extends StatelessWidget {
@@ -30,32 +31,59 @@ class PetProfileSummaryScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
+            // Add back button functionality here
             Navigator.pop(context);
           },
         ),
-        title: Center(
-          child: Column(
+        title:Center(
+          child:
+          Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Add Pet Profile',
-                  style: TextStyle(color: Colors.black, fontSize: 18)),
-              Text('Important Dates',
-                  style: TextStyle(color: Colors.grey, fontSize: 14)),
+              PoppinsTextWidget(
+                fontsize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey.shade800,
+                text: "Add Pet Profile",
+              ),
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey.shade600,
+                text: "important Dates",
+              ),
             ],
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Column(
+            padding: const EdgeInsets.only(right: 16.0,top: 10),
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Step', style: TextStyle(color: Colors.black)),
+                PoppinsTextWidget(
+                  fontsize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey.shade800,
+                  text: "Step",
+                ),
                 Row(
                   children: [
-                    Text('8', style: TextStyle(color: Colors.black)),
-                    Text('/9', style: TextStyle(color: Colors.grey))
+                    PoppinsTextWidget(
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade800,
+                      text: "8",
+                    ),
+                    PoppinsTextWidget(
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade400,
+                      text: "/9",
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -86,10 +114,12 @@ class PetProfileSummaryScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Center(
-            child: Text(
-              'Time to Celebrate!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14, color: Colors.black),
+            child:
+            PoppinsTextWidget(
+              fontsize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey.shade800,
+              text: "Time to Celebrate!",
             ),
           ),
           SizedBox(height: 30),
@@ -100,33 +130,120 @@ class PetProfileSummaryScreen extends StatelessWidget {
                 right: 16.0,
                 top: 10.0,
               ),
-              child: Card(
-                elevation: 4,
-                child: ListTile(
-                  leading:Image.asset("assets/images/birth.png",height: 42,width: 42,),
-                  title: Text('Birthday'),
-                  subtitle: Text(
-                      '${birthDate.day}/${birthDate.month}/${birthDate.year}'),
-                  trailing: Text('${calculateAge(birthDate)} y.o'),
+              child:
+              Container(
+                width: 327,
+                height: 74,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                  child: Row(
+                    children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Image.asset("assets/images/birth.png",height: 42,width: 42,),
+                    ),
+                    // SizedBox(width: 10.0,),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          PoppinsTextWidget(
+                            fontsize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey.shade600,
+                            text: "Birthday",
+                          ),
+                          SizedBox(height: 5.0,),
+                          PoppinsTextWidget(
+                            fontsize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey.shade800,
+                            text: '${birthDate.day}/${birthDate.month}/${birthDate.year}',
+                          ),
+                        ],
+                      ),
+                    ),
+                      Spacer(),
+                      Padding(
+                      padding: const EdgeInsets.only(top: 8.0,right: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          PoppinsTextWidget(
+                            fontsize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey.shade800,
+                            text: "${calculateAge(birthDate)}",
+                          ),
+                          PoppinsTextWidget(
+                            fontsize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey.shade600,
+                            text: 'y.o',
+                          ),
+                        ],
+                      ),
+                      ),
+                        ],
+                  ),
                 ),
               ),
-            ),
           ),
+          SizedBox(height: 15.0,),
           Center(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-                top: 10.0,
+            child: Container(
+              width: 327,
+              height: 74,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: Offset(0, 2),
+                  ),
+                ],
               ),
-              child: Card(
-                elevation: 4,
-                child: ListTile(
-                  leading:Image.asset("assets/images/adopt.png",height: 42,width: 42,),
-                  title: Text('Adoption Day'),
-                  subtitle: Text(
-                      '${adoptionDate.day}/${adoptionDate.month}/${adoptionDate.year}'),
-                ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Image.asset("assets/images/adopt.png",height: 42,width: 42,),
+                  ),
+                  // SizedBox(width: 10.0,),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        PoppinsTextWidget(
+                          fontsize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey.shade600,
+                          text: "Adoption Day",
+                        ),
+                        SizedBox(height: 5.0,),
+                        PoppinsTextWidget(
+                          fontsize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey.shade800,
+                          text: '${adoptionDate.day}/${adoptionDate.month}/${adoptionDate.year}',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -147,7 +264,13 @@ class PetProfileSummaryScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => Caretakers()),
                 );
               },
-              child: Text('Continue'),
+              child:
+              PoppinsTextWidget(
+                fontsize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                text: "Continue",
+              ),
             ),
           ),
         ],
@@ -342,6 +465,7 @@ class _AddPetProfileScreenState extends State<AddPetProfileScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => PetProfileSummaryScreen(
+
                               birthDate: birthDate!,
                               adoptionDate: adoptionDate!,
                             ),
