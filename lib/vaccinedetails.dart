@@ -51,23 +51,38 @@ class VaccineScreen extends StatelessWidget {
               SizedBox(height: 20.0,),
               Row(
                       children: [
-                        SizedBox(
-                          height: 54,
-                          width: 290,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: TextField(
-                                        decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.search),
-                                          hintText: 'Search by vaccine type',
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(8.0),
-                                          ),
-                                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50.0),
+                          child:
+                          Container(
+                            height: 54,
+                            width: 261,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey.shade100),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white.withOpacity(0),
+                                  offset: Offset(2, 3),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.search,color: Colors.grey.shade500,),
+                                  hintText: 'Search by vaccine type',
+                                  hintStyle: TextStyle(color: Colors.grey.shade500,fontSize: 16), // Sets hint text color
+                                  border: InputBorder.none,
+                                  // Removes the border
+                                ),
+                              ),
                             ),
                           ),
+
                         ),
-                        Spacer(),
+                        SizedBox(width: 10,),
                         Padding(
                           padding: const EdgeInsets.only(right: 15.0),
                           child: Container(
@@ -91,22 +106,25 @@ class VaccineScreen extends StatelessWidget {
 
               SizedBox(height: 20),
               Expanded(
-                child: ListView(
-                  children: [
-                    VaccineYearSection(year: "2023", vaccines: [
-                      VaccineItem(name: "Nobivac Parvo-C", date: "11.03.2023", doctor: "dr. Martha Roth"),
-                    ]),
-                    VaccineYearSection(year: "2022", vaccines: [
-                      VaccineItem(name: "Nobivac Parvo-C", date: "13.03.2022", doctor: "dr. Martha Roth"),
-                      VaccineItem(name: "Rabisin", date: "20.08.2022", doctor: "dr. Martha Roth"),
-                      VaccineItem(name: "Nobivac KV", date: "08.06.2022", doctor: "dr. Martha Roth"),
-                    ]),
-                    VaccineYearSection(year: "2021", vaccines: [
-                      VaccineItem(name: "Nobivac Parvo-C", date: "13.03.2021", doctor: "dr. Martha Roth"),
-                      VaccineItem(name: "Rabisin", date: "20.08.2021", doctor: "dr. Martha Roth"),
-                    ]),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      VaccineYearSection(year: "2023", vaccines: [
+                        VaccineItem(name: "Nobivac Parvo-C", date: "11.03.2023", doctor: "dr. Martha Roth"),
+                      ]),
+                      VaccineYearSection(year: "2022", vaccines: [
+                        VaccineItem(name: "Nobivac Parvo-C", date: "13.03.2022", doctor: "dr. Martha Roth"),
+                        VaccineItem(name: "Rabisin", date: "20.08.2022", doctor: "dr. Martha Roth"),
+                        VaccineItem(name: "Nobivac KV", date: "08.06.2022", doctor: "dr. Martha Roth"),
+                      ]),
+                      VaccineYearSection(year: "2021", vaccines: [
+                        VaccineItem(name: "Nobivac Parvo-C", date: "13.03.2021", doctor: "dr. Martha Roth"),
+                        VaccineItem(name: "Rabisin", date: "20.08.2021", doctor: "dr. Martha Roth"),
+                      ]),
+                    ],
+                  ),
                 ),
+
               ),
             ],
           ),
@@ -130,17 +148,27 @@ class VaccineYearSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(year, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          PoppinsTextWidget(
+            fontsize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade800,
+            text: year,
+          ),
           SizedBox(height: 10),
           Column(
-            children: vaccines.map((vaccine) => VaccineCard(vaccine: vaccine)).toList(),
+            children: vaccines
+                .map((vaccine) => Padding(
+              padding: const EdgeInsets.only(bottom: 15.0), // Add space here
+              child: VaccineCard(vaccine: vaccine),
+            ))
+                .toList(),
           ),
-          SizedBox(height: 20),
         ],
       ),
     );
   }
 }
+
 
 class VaccineItem {
   final String name;
@@ -157,23 +185,61 @@ class VaccineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: ListTile(
-        leading: Icon(Icons.calendar_today, color: Colors.grey),
-        title: Text(vaccine.name, style: TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text("${vaccine.date} | ${vaccine.doctor}"),
-        onTap: () {
-          showModalBottomSheet(
-            context: context,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+    return       InkWell(
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+          ),
+          builder: (context) => VaccineDetailBottomSheet(vaccine: vaccine),
+        );
+      },
+      child: Center(
+        child: Container(
+          height:70,
+          width: 327,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.grey.shade100),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.white.withOpacity(0),
+                offset: Offset(0, 1),
+                blurRadius: 20,
+                spreadRadius: -2
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15,top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PoppinsTextWidget(
+                  fontsize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade800,
+                  text: vaccine.name,
+                ),
+                Row(
+                  children: [
+                    Image.asset("assets/images/c.png",height: 18,width: 18,),
+                    SizedBox(width: 5.0,),
+                    PoppinsTextWidget(
+                      fontsize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.shade600,
+                      text: "${vaccine.date} | ${vaccine.doctor}",
+                    ),
+                  ],
+                ),
+              ],
             ),
-            builder: (context) => VaccineDetailBottomSheet(vaccine: vaccine),
-          );
-        },
+          ),
+
+          ),
       ),
     );
   }
